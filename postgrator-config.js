@@ -4,5 +4,6 @@ module.exports = {
   "migrationDirectory": "migrations",
   "driver": "pg",
   "port": 4000,
-  "connectionString": process.env.DB_URL,
-}
+  "connectionString": (process.env.NODE_ENV === 'test')
+  ? process.env.TEST_DB_URL
+  : process.env.DB_URL, }
