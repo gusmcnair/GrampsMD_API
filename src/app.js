@@ -8,6 +8,7 @@ const app = express()
 const ailmentsRouter = require('./ailments/ailments-router')
 const symptomsRouter = require('./symptoms/symptoms-router')
 const logger = require('./logger')
+const { CLIENT_ORIGIN } = require('./config')
 
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
@@ -16,6 +17,7 @@ const morganOption = (NODE_ENV === 'production')
 const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
   app.use(morgan(morganSetting))
   app.use(helmet())
+  
 app.use(
   cors({
       origin: CLIENT_ORIGIN
