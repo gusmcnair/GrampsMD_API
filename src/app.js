@@ -13,9 +13,14 @@ const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
 
-app.use(morgan(morganOption))
-app.use(helmet())
-app.use(cors())
+const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
+  app.use(morgan(morganSetting))
+  app.use(helmet())
+app.use(
+  cors({
+      origin: CLIENT_ORIGIN
+  })
+);
 
 
     app.use('/api/ailments', ailmentsRouter)

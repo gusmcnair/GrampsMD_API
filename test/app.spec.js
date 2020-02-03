@@ -2,7 +2,9 @@ const app = require('../src/app')
 const knex = require('knex')
 
 
-describe('Endpoints', function() {
+
+
+describe('Endpoints', function () {
   let db
 
 
@@ -19,8 +21,7 @@ describe('Endpoints', function() {
       .get('/api/symptoms')
       .expect(200)
       .expect(res => {
-        console.log(res)
-        expect((res.body[0]).to.eql('headache'))
+        { expect(res.body[0].symptom).to.eql('headache') }
       })
   })
 
@@ -28,9 +29,40 @@ describe('Endpoints', function() {
     return supertest(app)
       .get('/api/ailments?symptoms=headache&symptoms=toothache&symptoms=vomiting&genders=female&improv=no')
       .expect(200)
-      .expect(200)
+      .expect(res => {
+        { expect(res.body.title).to.eql('Time to get dentures') }
+      })
+  })
+
+  it('reponds with error if there are no symptoms', () => {
+    return supertest(app)
+      .get('/api/ailments?genders=female&improv=no')
+      .expect(400)
       .expect(res => {
         console.log(res)
-        {(res.body.title).to.eql('Time to get dentures')}})
+        { expect(res.body.error).to.eql('Invalid request data') }
       })
+  })
+
+  it('reponds with error if there are no symptoms', () => {
+    return supertest(app)
+      .get('/api/ailments?symptoms=headache&symptoms=toothache&symptoms=vomiting&genders=female')
+      .expect(400)
+      .expect(res => {
+        console.log(res)
+        { expect(res.body.error).to.eql('Invalid request data') }
+      })
+  })
+
+  it('reponds with error if there are no symptoms', () => {
+    return supertest(app)
+      .get('/api/ailments?symptoms=headache&symptoms=toothache&symptoms=vomiting&improv=no')
+      .expect(400)
+      .expect(res => {
+        console.log(res)
+        { expect(res.body.error).to.eql('Invalid request data') }
+      })
+  })
+
+
 })

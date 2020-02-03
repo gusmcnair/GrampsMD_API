@@ -4,8 +4,9 @@ const AilmentsService = require('./ailments-service')
 
 const ailmentsRouter = express.Router();
 
+
 function getDisease(querydata, ailments){
-    if (querydata.symptoms.length > 15 && typeof querydata.symptoms !== 'string'){
+       if (querydata.symptoms.length > 15 && typeof querydata.symptoms !== 'string'){
         return ailments[8]
     } else if (querydata.symptoms.length > 6 && typeof querydata.symptoms !== 'string'){
         return ailments[0]
@@ -38,9 +39,15 @@ function getDisease(querydata, ailments){
     } else {return ailments[5]}
 }
 
+
 ailmentsRouter
-    .get('/', (req, res, next) => {
+    .route('/')
+    .get((req, res, next) => {
         const knexInstance = req.app.get('db')
+        if (!req.query.symptoms || !req.query.genders || !req.query.improv){
+            return res.status(400).json({ error: 'Invalid request data' })
+        }
+
         AilmentsService.getAilments(knexInstance)
             .then(ailments => {
                 res.json(getDisease(req.query, ailments))
