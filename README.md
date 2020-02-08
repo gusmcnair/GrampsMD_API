@@ -1,26 +1,36 @@
-# Express Boilerplate!
+<h1>GrampsMD</h1>
 
-This is a boilerplate project used for starting new projects!
+Sick of WebMD telling you you're about to die, when you just have sniffles and a stomachache? Introducing GrampsMD, the folksy, no-frills alternative. Maybe you just need some of great-grandma's spring elixir! Maybe you're just hysterical! Maybe Grandpa doesn't know what you have, but why don't you call him and Grandma more often! Whatever the case may be, Grandpa's advice is sure to beat that of those quack doctors. (Please, please, please do not use GrampsMD for actual medical advice.)
 
-## Set up
+[Link to live app](https://grampsmd.now.sh/)
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+[Link to frontend repo](https://github.com/gusmcnair/GrampsMDClient)
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+<h2>How it works</h2>
+On load, the client makes a request to GET symptoms from the symptoms API endpoint. The user selects from this list of symptoms, and enters some personal information. This information is sent as another GET request to the ailments API request, and a series of sorting functions are performed on the backend in order to determine the ailment that the symptoms most closely match. These are returned to and displayed on the client. The user then has the option of performing another search.
 
-## Scripts
+<h2>Images of states</h2>
 
-Start the application `npm start`
+![App on load](https://github.com/gusmcnair/GrampsMDClient/blob/master/src/graphics/grampsmdlandingpage.png?raw=true)
 
-Start nodemon for the application `npm run dev`
+![Second form page](https://github.com/gusmcnair/GrampsMDClient/blob/master/src/graphics/grampsmdsecondpage.png?raw=true)
 
-Run the tests `npm test`
+![Results page](https://github.com/gusmcnair/GrampsMDClient/blob/master/src/graphics/grampsmdresults.png?raw=true)
 
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+<h2>Technologies used</h2>
+<h3>Frontend</h3>
+<ul>
+    <li>React</li>
+    <li>JSX</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ul>
+<h3>Backend</h3>
+<ul>
+    <li>Node.js</li>
+    <li>Express.js</li>
+    <li>Postgres/PostgreSQL</li>
+    <li>Mocha</li>
+    <li>Chai</li>
+    <li>Knex.js</li>
+</ul>
